@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+<p:growl id="gro" showDetail="true" sticky="false" life="3000"
+                 autoUpdate="true"/>
+
+        <ui:include src="menu.xhtml" />
+
+
+        <h:form>
+            <p:dataTable id="tabelaEndereco" value="#{controleEndereco.recuperarTodos()}" var="item"
+                         rowKey="#{item.cep}" paginator="true" rows="6" selectionMode="single"
+                         selection="#{controleEndereco.selectedEndereco}">
+
+                <p:column sortBy="#{item.cep}" filterBy="#{item.cep}" headerText="Cep" footerText="Cep">
+                    <h:outputText value="#{item.cep}"/>
+                </p:column>
+
+                 <p:column headerText="Cep" footerText="Cep">
+                     <h:outputText value="#{item.cep}"/>
+                </p:column>
+                
+                <p:column headerText="Estado" footerText="Estado">
+                    <h:outputText value="#{item.estado}"/>
+                </p:column>
+                
+                <p:column headerText="Rua" footerText="Rua">
+                    <h:outputText value="#{item.rua}"/>
+                </p:column>
+                
+                <p:column headerText="Cidade" footerText="Cidade">
+                    <h:outputText value="#{item.cidade}"/>
+                </p:column>
+                
+                <p:column headerText="Logradouro" footerText="Logradouro">
+                    <h:outputText value="#{item.logradouro}"/>
+                </p:column>
+
+                <p:column headerText="Número" footerText="Número">
+                    <h:outputText value="#{item.numero}"/>
+                </p:column>
+
+                
+                
+                
+            </p:dataTable>
+            <p:commandButton value="Visualizar dados dos endereços" 
+                             update="dial1" oncomplete="PF('painel1').show()"/>
+            <p:commandButton value="Alterar" 
+                             oncomplete="location.href='alteraEndereco.xhtml'"/>
+            <p:commandButton value="Excluir" actionListener="#{controleEndereco.excluir((controleEndereco.selectedEndereco))}" 
+                             update="tabelaEndereco">
+                <p:confirm header="ATENÇÃO" message="Realmente deseja excluir?" icon="ui-icon-alert" />
+            </p:commandButton>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+
+            <p:dialog id="dial1" closable="false" resizable="false" modal="true"
+                      visible="false" widgetVar="painel1" header="Dados dos endereços">
+
+                <p:panelGrid columns="2">
+                    
+                    <h:outputText value="Cep"/>
+                    <h:outputText value="#{controleEndereco.selectedEndereco.cep}"/>
+                  
+                    <h:outputText value="Estado"/>
+                    <h:outputText value="#{controleEndereco.selectedEndereco.estado}"/>
+                    
+                    <h:outputText value="Rua"/>
+                    <h:outputText value="#{controleEndereco.selectedEndereco.rua}"/>
+
+                    <h:outputText value="Cidade"/>
+                    <h:outputText value="#{controleEndereco.selectedEndereco.cidade}"/>
+
+                    <h:outputText value="Logradouro"/>
+                    <h:outputText value="#{controleEndereco.selectedEndereco.logradouro}"/>
+   
+                    <h:outputText value="Número"/>
+                    <h:outputText value="#{controleEndereco.selectedEndereco.numero}"/>
+                    
+                    
+                </p:panelGrid>
+
+                <p:commandLink value="Fechar" 
+                               oncomplete="PF('painel1').hide()"/>
+
+            </p:dialog>
+        </h:form>     
+        
+    </h:body>
+</html>
+

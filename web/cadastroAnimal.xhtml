@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <body>
+        <ui:include src="menu.xhtml"/>
+        
+        <h:form id="cadastrar">
+            <p:messages/>
+            <p:fieldset legend="Cadastro de Animais">
+                <p:panelGrid columns="3">
+                    <h:outputText value="Código: " />
+                    <p:inputText id="inputCodigo" value="#{bAnimal.codigo}"
+                                 required="true" requiredMessage="Digite o codigo"/>
+                    <p:message id="messageCodigo" for="inputCodigo"/>
+                    
+                    
+                    <h:outputText value="Tipo de Animal: " />
+                    <p:inputText id="inputTipoAnimal" value="#{bAnimal.tipoDeAnimal}" 
+                                 required="true" requiredMessage="Digite o tipo de animal"/>
+                    <p:message id="messageTipoAnimal" for="inputTipoAnimal"/>
+                    
+                    <h:outputText value="Descrição: " /> 
+                    <p:inputText id="inputDescricao" value="#{bAnimal.descricao}"
+                                 required="true" requiredMessage="Digite a descrição do animal"/>
+                    <p:message id="messageDescricao" for="inputDescricao"/>
+                    
+                    <h:outputText value="URL - Imagem do Animal" />
+                    <p:inputText id="inputURL" value="#{bAnimal.URLImagem}" 
+                                 required="true" requiredMessage="Digite a URL da imagem do animal"/>
+                    <p:message id="messageURL" for="inputURL"/>
+                    
+                </p:panelGrid>
+                
+                <p:commandButton value="Cadastrar" action="#{controleAnimal.inserir(bAnimal.construir())}" 
+                                 update="cadastrar"/>
+                
+            </p:fieldset> 
+        </h:form>
+    </body>
+
+</html>
+

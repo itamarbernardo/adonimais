@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+     
+        <h:form id="form">
+            <p:wizard>
+                <p:tab id="dadosOng" title="Dados da Ong">
+                    <p:panel header="Alterar os Dados da Ong">
+                        <p:messages/>
+
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Nome"/>
+                            <p:inputText id="inputNome" value="#{controleOng.selectedOng.nome}" 
+                                         required="true" requiredMessage="Digite o Nome"/>
+                            <p:message id="messageNome" for="inputNome"/>
+
+                            <h:outputText value="Telefone 1"/>
+                            <p:inputText id="inputTelefone1" value="#{controleOng.selectedOng.telefone1}" 
+                                         required="true" requiredMessage="Digite o Telefone 1" maxlength="13"/>
+                            <p:message id="messageTelefone1" for="inputTelefone1"/>
+
+                            <h:outputText value="Telefone 2"/>
+                            <p:inputText id="inputTelefone2" value="#{controleOng.selectedOng.telefone2}" 
+                                         required="true" requiredMessage="Digite o Telefone 2" maxlength="13"/>
+                            <p:message id="messageTelefone2" for="inputTelefone2"/>
+
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="enderecoOng" title="Lista de Endereços">
+                    <p:panel header="Selecione o Endereço da Ong">
+                        <p:messages/>
+                        <h:panelGrid>
+
+                            <p:dataTable id="tabelaEnderecos" value="#{controleEndereco.recuperarTodos()}" var="item"
+                                         rowKey="#{item.codigo}" paginator="true" rows="6" selectionMode="single" 
+                                         selection="#{controleEndereco.selectedEndereco.codigo}">
+
+                                <p:column sortBy="#{item.cep}" filterBy="#{item.cep}" headerText="CEP" footerText="CEP">
+                                    <h:outputText value="#{item.cep}"/>
+                                </p:column>
+                                
+                                <p:column sortBy="#{item.cidade}" filterBy="#{item.cidade}" headerText="Cidade" footerText="Cidade">
+                                    <h:outputText value="#{item.cidade}"/>
+                                </p:column>
+                                
+                                <p:column sortBy="#{item.rua}" filterBy="#{item.rua}" headerText="Rua" footerText="Rua">
+                                    <h:outputText value="#{item.rua}"/>
+                                </p:column>
+
+                            </p:dataTable>  
+                        </h:panelGrid>
+
+                        <p:commandButton value="Alterar" action="#{controleOng.alterar(controleOng.selectedOng)}" 
+                                         update="form"  style="left:600px"/>
+
+                    </p:panel>
+                </p:tab>
+            </p:wizard>   
+        </h:form>
+    </h:body>
+</html>
+

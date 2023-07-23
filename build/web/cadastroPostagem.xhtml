@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+        
+         <h:form id="form">
+            <p:wizard>
+                <p:tab id="dadosPostagem" title="Dados da Postagem">
+                    <p:panel header="Insira os Dados da Postagem">
+                        <p:messages/>
+
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Código"/>
+                            <p:inputText id="inputCodigo" value="#{bPostagem.codigo}" required="true" requiredMessage="Digite o Código"/>
+                            <p:message id="messageCodigo" for="inputCodigo"/>
+
+                            <h:outputText value="Mensagem"/>
+                            <p:inputText id="inputMensagem" value="#{bPostagem.mensagem}" required="true"
+                                         requiredMessage="Digite a Mensagem"/>
+                            <p:message id="messageMensagem" for="inputMensagem"/>
+
+
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="ong" title="Lista de Ongs">
+                    <p:panel header="Selecione a Ong">
+                        <p:messages/>
+                        <h:panelGrid>
+
+                            <p:dataTable id="tabelaOngs" value="#{controleOng.recuperarTodos()}" var="item"
+                                         rowKey="#{item.codigo}" paginator="true" rows="6" selectionMode="single" 
+                                         selection="#{bPostagem.ong}">
+
+                                <p:column sortBy="#{item.codigo}" filterBy="#{item.codigo}" headerText="Código" footerText="Código">
+                                    <h:outputText value="#{item.codigo}"/>
+                                </p:column>
+                                
+                                <p:column sortBy="#{item.nome}" filterBy="#{item.nome}" headerText="Nome" footerText="Nome">
+                                    <h:outputText value="#{item.nome}"/>
+                                </p:column>
+
+                            </p:dataTable>  
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                    <p:tab id="animais" title="Lista de Animais">
+                    <p:panel header="Selecione o Animal da Postagem">
+                        <p:messages/>
+                        <h:panelGrid>
+
+                            <p:dataTable id="tabelaAnimais" value="#{controleAnimal.recuperarTodos()}" var="item"
+                                         rowKey="#{item.codigo}" paginator="true" rows="6" selectionMode="single" 
+                                         selection="#{bPostagem.animal}">
+
+                                
+                                <p:column sortBy="#{item.codigo}" filterBy="#{item.codigo}" headerText="Código" footerText="Código">
+                                    <h:outputText value="#{item.codigo}"/>
+                                </p:column>
+                                
+                                <p:column sortBy="#{item.tipoDeAnimal}" filterBy="#{item.tipoDeAnimal}" headerText="Tipo de animal" footerText="Tipo de animal">
+                                    <h:outputText value="#{item.tipoDeAnimal}"/>
+                                </p:column>
+                                
+                                <p:column sortBy="#{item.descricao}" filterBy="#{item.descricao}" headerText="Descricao" footerText="Descricao">
+                                    <h:outputText value="#{item.descricao}"/>
+                                </p:column>
+                                
+
+                            </p:dataTable>  
+                        </h:panelGrid>
+
+                        <p:commandButton value="Cadastrar" action="#{controlePostagem.inserir(bPostagem.construir())}" 
+                                         update="form"  style="left:600px"/>
+
+                    </p:panel>
+                </p:tab>
+
+            </p:wizard>   
+        </h:form>
+        
+    </h:body>
+</html>
+

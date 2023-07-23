@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+     
+        <h:form id="form">
+            <p:messages/>
+            <p:fieldset legend="Alterar Postagem">
+                <p:panelGrid columns="3">
+                    <h:outputText value="Código"/>
+                    <p:inputText id="inputCodigo" value="#{controlePostagem.selectedPostagem.codigo}" required="true"
+                                 requiredMessage="Digite o Codigo" />
+                    <p:message id="messageCodigo" for="inputCodigo" />
+
+                    <h:outputText value="Animal"/>
+                    <p:inputText id="inputAnimal" value="#{controlePostagem.selectedPostagem.animal}" required="true" 
+                                 requiredMessage="Digite o Animal"/>
+                    <p:message id="messageAnimal" for="inputAnimal"/>
+                    
+                     <h:outputText value="Mensagem"/>
+                     <p:inputText id="inputMensagem" value="#{controlePostagem.selectedPostagem.mensagem}" required="true" 
+                                 requiredMessage="Digite a Mensagem" />
+                    <p:message id="messageMensagem" for="inputMensagem"/>
+
+                    <h:outputText value="Ong"/>
+                    <p:inputText id="inputOng" value="#{controlePostagem.selectedPostagem.ong}" required="true"
+                                 requiredMessage="Digite a Ong"/>
+                    <p:message id="messageOng" for="inputOng"/>
+
+                    
+            </p:panelGrid>
+                <p:commandButton value="Alterar"  action="#{controlePostagem.alterar(controlePostagem.selectedPostagem)}"
+                             update="form"/>
+        </p:fieldset>
+            </h:form>
+    </h:body>
+</html>
+

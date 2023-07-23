@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h1 align="center"><font color="#48D1CC">ADONIMAIS - ONG</font></h1>
+        <h:form id="formMenu">
+            <p:menubar>
+               
+                
+                <p:submenu label="Home">
+                    <p:menuitem value="Home" url="index.xhtml"/>
+                </p:submenu>
+                
+                <p:submenu label="Cadastros">
+                    <p:menuitem value="Animal" url="cadastroAnimal.xhtml"/>
+                    <p:separator/>
+                    <p:menuitem value="Ong" url="cadastroOng.xhtml"/>
+                    <p:separator/>
+                    <p:menuitem value="Endereço" url="cadastroEndereco.xhtml"/>
+                    <p:separator/>
+                    <p:menuitem value="Postagem" url="cadastroPostagem.xhtml"/>
+                </p:submenu>
+                
+                <p:submenu label="Apresentações">
+                    <p:menuitem value="Animais Cadastrados" url="apresentaAnimal.xhtml"/>
+                    <p:separator/>
+                    <p:menuitem value="Ong's Cadastradas" url="apresentaOng.xhtml"/>
+                    <p:separator/>
+                    <p:menuitem value="Endereços das Ong's" url="apresentaEndereco.xhtml"/>
+                    <p:separator/>
+                    <p:menuitem value="Postagens" url="apresentaPostagem.xhtml"/>
+                </p:submenu>
+                
+                <p:submenu label="Entrar" >
+                    <p:menuitem value="Entrar" url="indexUser.xhtml"/>
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+        
+    </h:body>
+</html>
+
